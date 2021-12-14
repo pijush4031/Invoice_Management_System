@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details page</title>
+</head>
+<body>
+    <form action="/account/" method="post" style="display: flex; flex-direction: column; row-gap: 12px;">
+        {% csrf_token %}
+        
+        <h1 style="color:red">Invoice Details</h1>
+        <input hidden=true name="type" value="put">
+        <label for="invoice_no" style="color:blue">Invoice Number</label>
+        <input type="text" id="invoice_no" value={{invoice.invoice_number}} name="invoice_number" style="width: 50%; height: 30px;" />
+        <label for="customer"style="color:blue">Customer Name</label>
+        <input type="text" value={{customer.name}} placeholder="Name" id="Name" name="name" style="width: 50%; height: 30px;"  />
+        <label for="email"style="color:blue">Email id</label>
+        <input type="email" value={{customer.email}} placeholder="Email" id="Email" name="email" style="width: 50%; height: 30px;"  />
+        <label for="address"style="color:blue">Address</label>
+        <input type="text" value={{customer.address}} placeholder="Address" id="Address" name="address" style="width: 50%; height: 30px;"  />
+        <label for="country"style="color:blue">Country</label>
+        <input type="text" value={{customer.country}} placeholder="Country" id="Country" name="country" style="width: 50%; height: 30px;"  />
+        <label for="applicable_taxes"style="color:blue">Applicable_taxes</label>
+        <input type="text" value={{invoice.applicable_taxes}} placeholder="Applicable Taxes" id="ApplicableTaxes" name="applicable_taxes" style="width: 50%; height: 30px;" />
+        <label for="gst_number"style="color:blue">GST_number</label>
+        <input type="text" value={{invoice.gst_number}} placeholder="GST Number" id="GSTNumber" name="gst_number" style="width: 50%; height: 30px;"  />
+        <button type="submit" style="width: 80px; height: 40px;"background-color:"black">Save</button>
+    </form>
+    <a href="/export/?invoice_number={{invoice.invoice_number}}">Export PDF</a>
+    
+</body>
+</html>
